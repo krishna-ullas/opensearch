@@ -1,31 +1,52 @@
 app:
-  name: LogCollectorES
-  code: LCES
-  notify: appz@cloudbourne.co
+  name: LogCollectorOS
+  code: LCOS
+  notify: kullas@ecloudcontrol.com
 
 build:
-  version: 3.1
+  version: 2.13
   env: DEV
   build_file: none
   output_files: output/*.zip
-  image_template: elasticsearch-6.8
-  image_name: alpha/log-collector-es
+  image_template: opensearch-2.13
 
 deploy:
-  context: alpha/DEV
-  type: elasticsearch6  
-  replicas: 1
+  context: krishna-ullas/DEV
+  type: statefulset 
+  replicas: 2
   port:
   - 9200
   - 9300
+  - 9600
 
 volumes:
-- claim: elasticsearch-data
-  mount: /appz/data
-  name: elasticsearch-data
-
+- claim: opensearch-data
+  mount: /usr/share/opensearch/data
+  name: opensearch-data
+  size: 20Gi
+  mode: ReadWriteOnce
+  class: microk8s-hostpath
 monitor:
-  notify: appzops@cloudbourne.co      
+  notify: kullas@ecloudcontrol.com     
 
 properties:
-  revision : 25
+  revision : 79
+  OPENSEARCH_INITIAL_ADMIN_PASSWORD: 
+    vault: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+  NODE_MODE : multi-node
+  MAX_RESULT_WINDOW : 10000000
+  ENABLE_ILM : 1
+  #JAVA_HEAPSIZE : 12g
+  JAVA_HEAPSIZE : 4g
+  MIN_AGE_WARM : 2d
+  MIN_AGE_COLD : 7d
+  ENABLE_FLUENTD : 0
+  REPLICA_COUNT : 2
+  ENABLE_METRICS : 1
+  ENABLE_MINIO_BACKUP : 1
+  MINIO_BUCKET_NAME : index-snapshot
+  MINIO_ENDPOINT : http://minio-2-0:9000
+  MINIO_ACCESS_KEY :
+    vault: MINIO_ACCESS_KEY
+  MINIO_SECRET_KEY :
+    vault: MINIO_SECRET_KEY
