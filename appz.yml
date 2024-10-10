@@ -30,7 +30,7 @@ monitor:
   notify: kullas@ecloudcontrol.com     
 
 properties:
-  revision : 88
+  revision : 89
   OPENSEARCH_INITIAL_ADMIN_PASSWORD: 
     vault: OPENSEARCH_INITIAL_ADMIN_PASSWORD
   NODE_MODE : single-node
