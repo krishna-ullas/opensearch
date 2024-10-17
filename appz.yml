@@ -45,7 +45,7 @@ properties:
   ENABLE_MINIO_BACKUP : 1
   MINIO_BUCKET_NAME : index-snapshot
   MINIO_ENDPOINT : http://minio-2-0:9000
-  INDEX_LIST : graylog_*, gl-events_0, gl-system-events_0
+  INDEX_LIST : graylog*,apigateway*, gl-system-events_0
   MINIO_ACCESS_KEY :
     vault: MINIO_ACCESS_KEY
   MINIO_SECRET_KEY :
