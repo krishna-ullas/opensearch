@@ -8,7 +8,7 @@ build:
   env: DEV
   build_file: none
   output_files: output/*.zip
-  image_template: opensearch-2.17
+  image_template: opensearch-2.13
 
 deploy:
   context: krishna-ullas/DEV
