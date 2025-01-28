@@ -13,7 +13,7 @@ build:
 deploy:
   context: krishna-ullas/DEV
   type: statefulset 
-  replicas: 7
+  replicas: 5
   port:
   - 9200
   - 9300
@@ -30,7 +30,7 @@ monitor:
   notify: kullas@ecloudcontrol.com     
 
 properties:
-  revision : 99
+  revision : 10
   OPENSEARCH_INITIAL_ADMIN_PASSWORD: 
     vault: OPENSEARCH_INITIAL_ADMIN_PASSWORD
   NODE_MODE : single-node
