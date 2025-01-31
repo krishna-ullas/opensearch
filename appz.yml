@@ -27,19 +27,21 @@ volumes:
   mode: ReadWriteOnce
   class: microk8s-hostpath
 monitor:
-  notify: kullas@ecloudcontrol.com     
+  notify: kullas@ecloudcontrol.com      
 
 properties:
-  revision : 16
+  revision : 1
   OPENSEARCH_INITIAL_ADMIN_PASSWORD: 
     vault: OPENSEARCH_INITIAL_ADMIN_PASSWORD
-  NODE_MODE : single-node
+  NODE_MODE : multi-node
   MAX_RESULT_WINDOW : 10000000
   ENABLE_ILM : 1
   JAVA_HEAPSIZE : 12g
+  #JAVA_HEAPSIZE : 4g
   MIN_AGE_WARM : 2d
   MIN_AGE_COLD : 7d
   ENABLE_FLUENTD : 0
+  REPLICA_COUNT : 2
   ENABLE_METRICS : 1
   ENABLE_MINIO_BACKUP : 1
   MINIO_BUCKET_NAME : index-snapshot
