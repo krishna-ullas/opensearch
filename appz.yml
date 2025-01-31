@@ -18,7 +18,10 @@ deploy:
   - 9200
   - 9300
   - 9600
-
+  securityContext:
+    sysctls:
+      - name: vm.max_map_count
+        value: "262144"
 volumes:
 - claim: opensearch-data
   mount: /usr/share/opensearch/data
