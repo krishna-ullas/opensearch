@@ -18,8 +18,6 @@ deploy:
   - 9200
   - 9300
   - 9600
-  strategy : rolling
-  ready_seconds : 45
   
 volumes:
 - claim: opensearch-data
